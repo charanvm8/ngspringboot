@@ -1,0 +1,87 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none" *ngIf = "userLoggedIn">
+  <div fxFlex="95%">
+    <div class="container" fxLayout="row" fxLayoutAlign="center none">
+      <h2>Welcome back, User!</h2>
+    </div>
+    <div>
+      <div *ngIf="showAppointments">
+        <h1>Appointments</h1>
+        <p *ngIf="transfers?.length == 0">No Appointments Found for the User.</p>
+        <table class="table table-hover" *ngIf="transfers?.length > 0">
+          <thead>
+            <tr>
+              <td>Date</td>
+              <td>Start Time</td>
+              <td>End Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let transfer of transfers"
+              (click)="getAppointment(transfer)"
+            >
+              <td>{{ transfer.date }}</td>
+              <td>{{ transfer.startTime }}</td>
+              <td>{{ transfer.endTime }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="showAppointment">
+        <h1>Appointment Details</h1>
+        <h4 (click)="showAllAppointments()">Back to Appointments</h4>
+        <p>Date : {{ date }}</p>
+        <p>Start Time : {{ startTime }}</p>
+        <p>End Time : {{ endTime }}</p>
+        <p>Status : {{ status }}</p>
+        <p>Notes : {{ notes }}</p>
+      </div>
+    </div>
+    <div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1>Service Providers</h1>
+      <label for="item-input">Search Provider</label>
+      <input type="text" id="item-input" #newItem />
+      <br>
+      <button type="button" (click)="searchProvider(newItem.value)">
+        SearchProvider
+      </button>
+      <p *ngIf="providers?.length == 0 && userSerached">No results found.</p>
+      <table class="table table-hover" *ngIf="providers?.length > 0">
+        <thead>
+          <tr>
+            <td>Provider Name</td>
+            <td>Street</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip Code</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sp of providers">
+            <td>{{ sp.providerName }}</td>
+            <td>{{ sp.street }}</td>
+            <td>{{ sp.city }}</td>
+            <td>{{ sp.state }}</td>
+            <td>{{ sp.zipCode }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf = "!userLoggedIn">
+  <label for="item-input">User Credentials</label>
+  <br>
+      <input type="text" id="item-input" #userName />
+      <br>
+      <input type="text" id="item-input" #password />
+      <br>
+      <button type="button" (click)="login(userName.value, password.value)">
+        Login
+      </button>
+</div>
