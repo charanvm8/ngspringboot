@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form #userreg="ngForm" (ngSubmit)="onSubmit(userreg)">
+        <div class="form-group">
+          <label for="userfullname">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="userfullname"
+            required
+            [(ngModel)]="model.userfullname"
+            name="userfullname"
+            #userfullname="ngModel"
+          />
+          <div
+            [hidden]="userfullname.valid || userfullname.pristine"
+            class="alert alert-danger"
+          >
+            Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            class="form-control"
+            id="email"
+            required
+            [(ngModel)]="model.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div
+            [hidden]="email.valid || email.pristine"
+            class="alert alert-danger"
+          >
+            Email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            class="form-control"
+            id="address"
+            required
+            [(ngModel)]="model.address"
+            name="address"
+            #address="ngModel"
+          />
+          <div
+            [hidden]="address.valid || address.pristine"
+            class="alert alert-danger"
+          >
+            Address is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="zipcode">Zip Code:</label>
+          <input
+            type="text"
+            id="zipcode"
+            class="form-control"
+            id="zipcode"
+            required
+            [(ngModel)]="model.zipcode"
+            name="zipcode"
+            #zipcode="ngModel"
+          />
+          <div
+            [hidden]="zipcode.valid || zipcode.pristine"
+            class="alert alert-danger"
+          >
+            Zip Code is required
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" class="btn btn-success" [disabled]="!userreg.form.valid">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
